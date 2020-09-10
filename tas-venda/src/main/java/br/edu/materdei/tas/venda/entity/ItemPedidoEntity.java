@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -33,7 +34,7 @@ public class ItemPedidoEntity {
     @Column(nullable = false)
     private Double vlrunit;
     
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(nullable = false)
     private ProdutoEntity produto;    
 

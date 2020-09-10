@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,7 +42,7 @@ public class PedidoEntity {
     @Temporal(TemporalType.DATE)
     private Date dtfaturado;
     
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(nullable = false)
     private ClienteEntity cliente;
     
