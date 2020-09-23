@@ -11,6 +11,7 @@ import br.edu.materdei.tas.core.exception.ResourceNotFoundException;
 import br.edu.materdei.tas.core.service.IBaseService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,8 +48,8 @@ public class CompraService implements IBaseService<CompraEntity> {
 
     @Override
     @Transactional
-    public void delete(Integer id) throws ResourceNotFoundException {
-        repository.deleteById(id);
+    public void delete(Integer id) throws ResourceNotFoundException {        
+        repository.deleteById(id);                  
     }   
-       
+    
 }
