@@ -5,10 +5,10 @@
  */
 package br.edu.materdei.tas.server.controller;
 
-import br.edu.materdei.tas.core.entity.GrupoEntity;
 import br.edu.materdei.tas.core.exception.ResourceNotFoundException;
-import br.edu.materdei.tas.core.service.GrupoService;
 import br.edu.materdei.tas.server.utils.CustomErrorResponse;
+import br.edu.materdei.tas.venda.entity.VendaEntity;
+import br.edu.materdei.tas.venda.service.VendaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,18 +27,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class GrupoController {
+public class VendaController {
     
     @Autowired
-    private GrupoService service;
+    private VendaService service;
     
-    @GetMapping("grupos")
-    public ResponseEntity<List<GrupoEntity>> findAll() {
+    @GetMapping("vendas")
+    public ResponseEntity<List<VendaEntity>> findAll() {
         try {
             
-            List<GrupoEntity> grupos = service.findAll();
+            List<VendaEntity> vendas = service.findAll();
         
-            return new ResponseEntity(grupos, HttpStatus.OK);  
+            return new ResponseEntity(vendas, HttpStatus.OK);  
             
         } catch (Exception e) {
             return new ResponseEntity(
@@ -48,12 +48,12 @@ public class GrupoController {
         }          
     }
     
-    @PostMapping("grupos")
-    public ResponseEntity create(@RequestBody GrupoEntity grupo) {
+    @PostMapping("vendas")
+    public ResponseEntity create(@RequestBody VendaEntity venda) {
         try {
             
-            this.service.save(grupo);
-            return new ResponseEntity(grupo, HttpStatus.CREATED);
+            this.service.save(venda);
+            return new ResponseEntity(venda, HttpStatus.CREATED);
             
         } catch (Exception e) {
             return new ResponseEntity(
@@ -62,16 +62,16 @@ public class GrupoController {
         }
     }
     
-    @GetMapping("grupos/{id}")
+    @GetMapping("vendas/{id}")
     public ResponseEntity findById(@PathVariable("id") Integer id) {
         try {
             
-            GrupoEntity grupo = this.service.findById(id);
-            return new ResponseEntity(grupo, HttpStatus.OK);
+            VendaEntity venda = this.service.findById(id);
+            return new ResponseEntity(venda, HttpStatus.OK);
             
         } catch(ResourceNotFoundException e) {
             return new ResponseEntity(
-                    new CustomErrorResponse("Não existe um grupo com este código"),
+                    new CustomErrorResponse("Não existe um venda com este código"),
                         HttpStatus.NOT_FOUND
             );
         } catch (Exception e) {
@@ -82,22 +82,22 @@ public class GrupoController {
         }        
     }
     
-    @PutMapping("grupos/{id}")
+    @PutMapping("vendas/{id}")
     public ResponseEntity update(@PathVariable("id") Integer id,
-            @RequestBody GrupoEntity grupo) {
+            @RequestBody VendaEntity venda) {
         try {
             
-            GrupoEntity found = this.service.findById(id);
+            VendaEntity found = this.service.findById(id);
             
-            grupo.setId(found.getId());
+            venda.setId(found.getId());
             
-            this.service.save(grupo);
+            this.service.save(venda);
             
-            return new ResponseEntity(grupo, HttpStatus.OK);
+            return new ResponseEntity(venda, HttpStatus.OK);
             
         } catch(ResourceNotFoundException e) {
             return new ResponseEntity(
-                    new CustomErrorResponse("Não existe um grupo com este código"),
+                    new CustomErrorResponse("Não existe um venda com este código"),
                         HttpStatus.NOT_FOUND
             );
         } catch (Exception e) {
@@ -108,11 +108,11 @@ public class GrupoController {
         }  
     }
     
-    @DeleteMapping("grupos/{id}")
+    @DeleteMapping("vendas/{id}")
     public ResponseEntity delete(@PathVariable("id") Integer id) {
         try {
             
-            GrupoEntity found = this.service.findById(id);
+            VendaEntity found = this.service.findById(id);
             
             this.service.delete(found.getId());                      
             
@@ -120,7 +120,7 @@ public class GrupoController {
             
         } catch(ResourceNotFoundException e) {
             return new ResponseEntity(
-                    new CustomErrorResponse("Não existe um grupo com este código"),
+                    new CustomErrorResponse("Não existe um venda com este código"),
                         HttpStatus.NOT_FOUND
             );
         } catch (Exception e) {
