@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.materdei.tas.compra.entity;
 
 import java.util.Date;
@@ -21,27 +16,22 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author pedro
- */
 @Entity
 @Table(name = "compra")
 public class CompraEntity {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
     
     @Column(length = 6, nullable = false)
-    private String codigo;    
+    private String codigo;
     
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date dtcompra;
     
     @ManyToOne
     @JoinColumn(nullable = false)
-    private FornecedorEntity fornecedor;   
+    private FornecedorEntity fornecedor;
     
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ItemCompraEntity> itens;
@@ -115,5 +105,4 @@ public class CompraEntity {
     public void setItens(List<ItemCompraEntity> itens) {
         this.itens = itens;
     }
-    
 }

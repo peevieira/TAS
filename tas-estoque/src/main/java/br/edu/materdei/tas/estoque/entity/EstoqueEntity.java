@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.materdei.tas.estoque.entity;
 
 import br.edu.materdei.tas.core.entity.ProdutoEntity;
@@ -18,17 +13,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author pedro
- */
-
 @Entity
 @Table(name = "estoque")
 public class EstoqueEntity {
-    
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
     
     @Temporal(TemporalType.DATE)
@@ -118,5 +107,6 @@ public class EstoqueEntity {
     public void setProduto(ProdutoEntity produto) {
         this.produto = produto;
     }
+    
     
 }

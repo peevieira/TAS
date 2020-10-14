@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.materdei.tas.venda.entity;
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,17 +13,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author pedro
- */
-
 @Entity
 @Table(name = "venda")
 public class VendaEntity {
-    
     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
     
     @Column(length = 6, nullable = false)
@@ -36,7 +26,7 @@ public class VendaEntity {
     @Temporal(TemporalType.DATE)
     private Date dtvenda;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     private PedidoEntity pedido;
 
@@ -98,6 +88,5 @@ public class VendaEntity {
      */
     public void setPedido(PedidoEntity pedido) {
         this.pedido = pedido;
-    } 
-       
+    }
 }

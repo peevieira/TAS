@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.materdei.tas.server.controller;
 
 import br.edu.materdei.tas.compra.entity.CompraEntity;
@@ -21,11 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author pedro
- */
-
 @RestController
 public class CompraController {
     
@@ -35,100 +25,124 @@ public class CompraController {
     @GetMapping("compras")
     public ResponseEntity<List<CompraEntity>> findAll() {
         try {
-            
+            //Busca TODOS os registros no banco de dados
             List<CompraEntity> compras = service.findAll();
-        
+
+            //Retorna a lista de compras
             return new ResponseEntity(compras, HttpStatus.OK);  
             
         } catch (Exception e) {
+            
+            //Qualquer outro erro
             return new ResponseEntity(
-                    new CustomErrorResponse(e.getMessage()),
-                        HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }          
+                    new CustomErrorResponse(e.getMessage()), 
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
     @PostMapping("compras")
     public ResponseEntity create(@RequestBody CompraEntity compra) {
         try {
-            
+            //Insere o compra no bando de dados
             this.service.save(compra);
+            
+            //Retorna o compra inserido
             return new ResponseEntity(compra, HttpStatus.CREATED);
             
         } catch (Exception e) {
+            
+            //Qualquer outro erro
             return new ResponseEntity(
                     new CustomErrorResponse(e.getMessage()), 
-                        HttpStatus.INTERNAL_SERVER_ERROR);
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
     @GetMapping("compras/{id}")
-    public ResponseEntity findById(@PathVariable("id") Integer id) {
+    public ResponseEntity findByID(@PathVariable("id") Integer id) {
         try {
             
+            //Verifica se existe um compra com o ID passado por parametro
             CompraEntity compra = this.service.findById(id);
+            
+            //Retorna o compra com o ID do parametro
             return new ResponseEntity(compra, HttpStatus.OK);
             
-        } catch(ResourceNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
+            
+            //Erro de compra não encontrado
             return new ResponseEntity(
                     new CustomErrorResponse("Não existe um compra com este código"),
-                        HttpStatus.NOT_FOUND
-            );
+                    HttpStatus.NOT_FOUND);
+            
         } catch (Exception e) {
+                    
+            //Qualquer outro erro
             return new ResponseEntity(
-                    new CustomErrorResponse(e.getMessage()),
-                        HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }        
+                    new CustomErrorResponse(e.getMessage()), 
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
     @PutMapping("compras/{id}")
-    public ResponseEntity update(@PathVariable("id") Integer id,
+    public ResponseEntity update(@PathVariable("id") Integer id, 
             @RequestBody CompraEntity compra) {
         try {
-            
+            //Verifica se existe um compra com o ID passado por parametro
             CompraEntity found = this.service.findById(id);
             
+            //Força que o novo objeto tenha o memso ID do objeto localizado
             compra.setId(found.getId());
             
-            this.service.save(compra);
+            //Salvara o novo objeto no banco
+            this.service.save(compra);            
             
+            //Retorna o objeto que foi atualizado
             return new ResponseEntity(compra, HttpStatus.OK);
             
-        } catch(ResourceNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
+            
+            //Erro de compra não encontrado
             return new ResponseEntity(
                     new CustomErrorResponse("Não existe um compra com este código"),
-                        HttpStatus.NOT_FOUND
-            );
+                    HttpStatus.NOT_FOUND);
+            
         } catch (Exception e) {
+                        
+            //Qualquer outro erro
             return new ResponseEntity(
-                    new CustomErrorResponse(e.getMessage()),
-                        HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }  
+                    new CustomErrorResponse(e.getMessage()), 
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
     @DeleteMapping("compras/{id}")
     public ResponseEntity delete(@PathVariable("id") Integer id) {
         try {
-            
+            //Verifica se existe um compra com o ID passado por parametro
             CompraEntity found = this.service.findById(id);
             
-            this.service.delete(found.getId());                      
             
+            //Exclui o item localizado
+            this.service.delete(found.getId());
+            
+            //Como não há o que retornar, retorna-se apenas um status de "Sem Conteúdo"
             return new ResponseEntity(HttpStatus.NO_CONTENT);
             
-        } catch(ResourceNotFoundException e) {
+        } catch (ResourceNotFoundException e) {
+            
+            //Erro de compra não encontrado
             return new ResponseEntity(
                     new CustomErrorResponse("Não existe um compra com este código"),
-                        HttpStatus.NOT_FOUND
-            );
+                    HttpStatus.NOT_FOUND);
+            
         } catch (Exception e) {
+                    
+            //Qualquer outro erro
             return new ResponseEntity(
-                    new CustomErrorResponse(e.getMessage()),
-                        HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }        
+                    new CustomErrorResponse(e.getMessage()), 
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
 }

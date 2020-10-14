@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.materdei.tas.compra.entity;
 
 import br.edu.materdei.tas.core.entity.ProdutoEntity;
@@ -15,17 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author pedro
- */
-
 @Entity
 @Table(name = "itemcompra")
 public class ItemCompraEntity {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
     
     @Column(nullable = false)
@@ -93,7 +81,4 @@ public class ItemCompraEntity {
     public void setProduto(ProdutoEntity produto) {
         this.produto = produto;
     }
-    
-    
-    
 }

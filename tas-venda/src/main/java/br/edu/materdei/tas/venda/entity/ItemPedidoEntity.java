@@ -1,43 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.materdei.tas.venda.entity;
 
 import br.edu.materdei.tas.core.entity.ProdutoEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-/**
- *
- * @author pedro
- */
 
 @Entity
 @Table(name = "itempedido")
 public class ItemPedidoEntity {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id;
     
     @Column(nullable = false)
-    private Double qtdate;
+    private Double qtdade;
     
     @Column(nullable = false)
     private Double vlrunit;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
-    private ProdutoEntity produto;    
+    private ProdutoEntity produto;
 
     /**
      * @return the id
@@ -54,17 +42,17 @@ public class ItemPedidoEntity {
     }
 
     /**
-     * @return the qtdate
+     * @return the qtdade
      */
-    public Double getQtdate() {
-        return qtdate;
+    public Double getQtdade() {
+        return qtdade;
     }
 
     /**
-     * @param qtdate the qtdate to set
+     * @param qtdade the qtdade to set
      */
-    public void setQtdate(Double qtdate) {
-        this.qtdate = qtdate;
+    public void setQtdade(Double qtdade) {
+        this.qtdade = qtdade;
     }
 
     /**
@@ -93,6 +81,5 @@ public class ItemPedidoEntity {
      */
     public void setProduto(ProdutoEntity produto) {
         this.produto = produto;
-    }  
-    
+    }
 }

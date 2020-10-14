@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.materdei.tas.compra.entity;
 
 import br.edu.materdei.tas.core.entity.Pessoa;
@@ -10,15 +5,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-/**
- *
- * @author pedro
- */
-
 @Entity
 @Table(name = "fornecedor")
 public class FornecedorEntity extends Pessoa {
-    
     @Column(length = 50)
     private String contato;
     
@@ -51,6 +40,6 @@ public class FornecedorEntity extends Pessoa {
      */
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
-    }  
+    }
     
 }

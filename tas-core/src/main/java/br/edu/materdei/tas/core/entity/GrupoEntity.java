@@ -7,11 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- *
- * @author pedro
- */
 
+/**
+ * 
+ * @author libajunior
+ */
 @Entity
 @Table(name = "grupo")
 public class GrupoEntity {
@@ -50,6 +50,7 @@ public class GrupoEntity {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     
     
 }
