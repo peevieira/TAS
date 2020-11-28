@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Adicionar Item</h1>
+
+<div mat-dialog-content>
+    <mat-form-field class="full-width">
+        <mat-select placeholder="Produto" [(ngModel)]="itemCondicional.produto" (ngModelChange)="changeItem()">
+            <mat-option *ngFor="let produto of produtos" [value]="produto">
+                {{produto.nome}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="flex-container">
+        <mat-form-field class="input-number">
+            <input matInput type="number" placeholder="Qtdade" [(ngModel)]="itemCondicional.qtdade">
+        </mat-form-field>
+
+        <span class="spacer"></span>
+
+        <mat-form-field>
+            <mat-select placeholder="Statys" [(ngModel)]="itemCondicional.situacao">
+                <mat-option value="C">Condicional</mat-option>
+                <mat-option value="D">Devolvido</mat-option>
+                <mat-option value="V">Vendido</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-button (click)="onDismiss()">CANCELAR</button>
+    <button mat-raised-button (click)="onConfirm()">CONFIRMAR</button>
+</div>

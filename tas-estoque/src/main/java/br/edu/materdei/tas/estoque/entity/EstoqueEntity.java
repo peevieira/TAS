@@ -30,12 +30,16 @@ public class EstoqueEntity {
     @Column(nullable = false)
     private String historico;
     
+    @Column(nullable = false, length = 1)
+    private String condicional; 
+        
     @ManyToOne
     @JoinColumn(nullable = false)
     private ProdutoEntity produto;
 
     public EstoqueEntity() {
         this.dtmovto = new Date();
+        this.condicional = "N";
     }
 
     /**
@@ -106,6 +110,20 @@ public class EstoqueEntity {
      */
     public void setProduto(ProdutoEntity produto) {
         this.produto = produto;
+    }
+
+    /**
+     * @return the condicional
+     */
+    public String getCondicional() {
+        return condicional;
+    }
+
+    /**
+     * @param condicional the condicional to set
+     */
+    public void setCondicional(String condicional) {
+        this.condicional = condicional;
     }
     
     

@@ -1,0 +1,4 @@
+br\edu\materdei\tas\condicional\repository\CondicionalRepository.class
+br\edu\materdei\tas\condicional\service\CondicionalService.class
+br\edu\materdei\tas\condicional\entity\CondicionalEntity.class
+br\edu\materdei\tas\condicional\entity\ItemCondicionalEntity.class

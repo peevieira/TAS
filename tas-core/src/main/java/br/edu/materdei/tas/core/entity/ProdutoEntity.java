@@ -22,7 +22,7 @@ public class ProdutoEntity {
     private String codigo;
 
     @Column(length = 50, nullable = false)
-    private String nome;
+    private String nome;      
     
     @Lob
     @Column(length = 5000)
@@ -34,12 +34,16 @@ public class ProdutoEntity {
     @Column(length = 1, nullable = false)
     private String ativo;
     
+    @Column(length = 1, nullable = false)
+    private String aceitacondicional;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     private GrupoEntity grupo;
 
     public ProdutoEntity() {
         this.ativo = "S";
+        this.aceitacondicional = "N";
     }
     
 
@@ -139,5 +143,19 @@ public class ProdutoEntity {
      */
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    /**
+     * @return the aceitacondicional
+     */
+    public String getAceitacondicional() {
+        return aceitacondicional;
+    }
+
+    /**
+     * @param aceitacondicional the aceitacondicional to set
+     */
+    public void setAceitacondicional(String aceitacondicional) {
+        this.aceitacondicional = aceitacondicional;
     }
 }
